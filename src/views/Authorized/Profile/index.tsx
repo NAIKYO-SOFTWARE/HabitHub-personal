@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useAppStore } from "../../../store/app-store";
 import Layout from "../../../components/Layout";
 
@@ -11,14 +10,13 @@ const menu: { title: string; path: string; onClick?: () => void }[] = [
 ];
 
 function Profile() {
-  const navigate = useNavigate();
   const logout = useAppStore((s) => s.logout);
+
   const onLogout = () => {
     logout();
-    console.log("ok");
-
-    navigate("/login");
+    location.replace("/logout");
   };
+
   const isExits = menu.find((m) => m.path == "logout");
   !isExits && menu.push({ title: "Logout", onClick: onLogout, path: "logout" });
 
